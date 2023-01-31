@@ -9,7 +9,7 @@ class WebController extends Controller
     public function index()
     {
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'YOUR_SERVER_KEY';
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-iah4n7ij5FzOJYiHij0vrxFY';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
@@ -31,6 +31,10 @@ class WebController extends Controller
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('welcome');
+
+        //eturn $snapToken;
+        return view('welcome', [
+            'snap_token' => $snapToken
+        ]);
     }
 }
