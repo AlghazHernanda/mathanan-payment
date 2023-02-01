@@ -1,6 +1,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/style.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
     <script type="text/javascript"
       src="https://app.sandbox.midtrans.com/snap/snap.js"
@@ -12,7 +14,7 @@
     <button id="pay-button">Pay!</button>
  
     <script type="text/javascript">
-    
+
       // For example trigger on button clicked, or any time you need
       var payButton = document.getElementById('pay-button');
       payButton.addEventListener('click', function () {
