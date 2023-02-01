@@ -8,10 +8,20 @@
       src="https://app.sandbox.midtrans.com/snap/snap.js"
       data-client-key="SB-Mid-client-TI04AnUNNutQtcfw"></script>
     <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
+
+    {{-- jquery CDN 3 --}}
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   </head>
  
   <body>
     <button id="pay-button">Pay!</button>
+
+    <form action="" id="submit_form" method="POST">
+        @csrf
+        {{-- ini biar data payment bisa masuk ke database, jadi kita akalin pake id "json_callback" yang di olah pake kodingan func
+         send_response_to_form(result) --}}
+        <input type="hidden" name="json" id="json_callback">
+    </form>
  
     <script type="text/javascript">
 
@@ -21,17 +31,20 @@
 
         // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
         window.snap.pay('{{$snap_token}}', {
-            onSuccess: function(result){
+          onSuccess: function(result){
             /* You may add your own implementation here */
-            alert("payment success!"); console.log(result);
+            console.log(result);
+            send_response_to_form(result);
           },
           onPending: function(result){
             /* You may add your own implementation here */
-            alert("wating your payment!"); console.log(result);
+            console.log(result);
+            send_response_to_form(result);
           },
           onError: function(result){
             /* You may add your own implementation here */
-            alert("payment failed!"); console.log(result);
+            console.log(result);
+            send_response_to_form(result);
           },
           onClose: function(){
             /* You may add your own implementation here */
@@ -39,6 +52,18 @@
           }
         })
       });
+
+      function send_response_to_form(result){
+        //jadi masukan hasil result berbentuk JSON yang telah di ubah ke bentuk string oleh JSON.stringify, ke dalam value json_callback
+        document.getElementById('json_callback').value = JSON.stringify(result);
+
+        // //buat coba-coba
+        // alert(document.getElementById('json_callback').value);
+
+        //submit hasil nya ke hidden form melalui id "submit_form"
+        $('#submit_form').submit();
+      }
+
     </script>
   </body>
 </html>
