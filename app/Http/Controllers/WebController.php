@@ -68,5 +68,15 @@ class WebController extends Controller
 
         $order = new Order();
         $order->status = $json->transaction_status; //ambil transaction_status yang di dalam JSON
+        $order->uname = $request->get('uname');
+        $order->email = $request->get('email');
+        $order->number = $request->get('number');
+        $order->transaction_id = $json->transaction_id;
+        $order->order_id = $json->order_id;
+        $order->gross_amount = $json->gross_amount;
+        $order->payment_type = $json->payment_type;
+
+        $order->payment_code = isset($json->payment_code) ? $json->payment_code : null;
+        $order->pdf_url = isset($json->pdf_url) ? $json->pdf_url : null;
     }
 }
