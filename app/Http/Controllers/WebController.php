@@ -8,6 +8,12 @@ class WebController extends Controller
 {
     public function index()
     {
+        return view('index');
+    }
+
+
+    public function payment(Request $request)
+    {
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = 'SB-Mid-server-iah4n7ij5FzOJYiHij0vrxFY';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -20,21 +26,40 @@ class WebController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => 10000,
+                'gross_amount' => 18000,
+            ),
+            'item_details' => array(
+                [
+                    'id' => 'a1',
+                    'price' => '10000',
+                    'quantity' => 1,
+                    'name' => 'Apel'
+                ], [
+                    'id' => 'b1',
+                    'price' => '8000',
+                    'quantity' => 1,
+                    'name' => 'Jeruk'
+                ]
             ),
             'customer_details' => array(
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
+                'first_name' => $request->get('uname'),
+                'last_name' => '',
+                'email' => $request->get('email'),
+                'phone' => $request->get('number'),
             ),
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         //eturn $snapToken;
-        return view('welcome', [
+        return view('payment', [
             'snap_token' => $snapToken
         ]);
+    }
+
+    public function payment_post(Request $request)
+    {
+        //untuk test liat hasil data payment yang diambil sebelum dimasukin ke database
+        return $request;
     }
 }
