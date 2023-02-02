@@ -59,7 +59,7 @@ class WebController extends Controller
 
     public function payment_post(Request $request)
     {
-        //untuk test liat hasil data payment yang diambil sebelum dimasukin ke database
-        return $request;
+        // //untuk test liat hasil data payment yang diambil sebelum dimasukin ke database
+        // return $request;
     }
 }
