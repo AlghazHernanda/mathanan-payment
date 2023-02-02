@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -61,5 +62,11 @@ class WebController extends Controller
     {
         // //untuk test liat hasil data payment yang diambil sebelum dimasukin ke database
         // return $request;
+
+        //jadiin format json lagi
+        $json = json_decode($request->get('json'));
+
+        $order = new Order();
+        $order->status = $json->transaction_status; //ambil transaction_status yang di dalam JSON
     }
 }
