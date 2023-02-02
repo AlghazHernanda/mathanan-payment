@@ -21,10 +21,12 @@
       <button type="submit">Lanjut</button>
     </form>
     
-    {{-- @if(session('alert-success'))
+    {{-- mengambil alert-succes dan alert-failed dari func payment_post di webController --}}
+    @if(session('alert-success'))
     <script>alert("{{session('alert-success')}}")</script>
     @elseif(session('alert-failed'))
     <script>alert("{{session('alert-failed')}}")</script>
-    @endif --}}
+    @endif
+
   </body>
 </html>
