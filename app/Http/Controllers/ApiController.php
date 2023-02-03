@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class ApiController extends Controller
 {
@@ -13,5 +14,8 @@ class ApiController extends Controller
 
         //ubah data ke bentuk JSON
         $json = json_decode($request->getContent());
+
+        ////untuk melihat bentuk data json(coba-coba)
+        //return $json;
     }
 }
