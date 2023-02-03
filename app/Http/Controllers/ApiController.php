@@ -24,5 +24,10 @@ class ApiController extends Controller
 
         // //untuk cek signature_key nya hasilnya apa
         // return $signature_key;
+
+        //jika signature_key buatan kita, tidak sesuai dengan signature_key dari json dibody nya, maka tolak
+        if ($signature_key != $json->signature_key) {
+            return abort(404);
+        }
     }
 }
