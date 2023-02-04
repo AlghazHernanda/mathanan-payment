@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 
@@ -16,4 +17,8 @@ use App\Http\Controllers\WebController;
 
 Route::get('/', [WebController::class, 'index']);
 Route::get('/payment', [WebController::class, 'payment']);
-// Route::post('/payment', [WebController::class, 'payment_post']);
+Route::post('/payment', [WebController::class, 'payment_post']);
+
+//verifikasi
+Route::get('/login', [AuthController::class, 'get_login'])->name('login');
+Route::get('/register', [AuthController::class, 'get_register'])->name('register');
