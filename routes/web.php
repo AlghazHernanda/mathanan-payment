@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 
@@ -22,3 +23,8 @@ Route::post('/payment', [WebController::class, 'payment_post']);
 //verifikasi
 Route::get('/login', [AuthController::class, 'get_login'])->name('login');
 Route::get('/register', [AuthController::class, 'get_register'])->name('register');
+
+Route::post('/login', [AuthController::class, 'post_login']);
+Route::post('/register', [AuthController::class, 'post_register']);
+
+Route::get('/email/need-verification', [VerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
