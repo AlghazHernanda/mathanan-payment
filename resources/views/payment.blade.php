@@ -16,6 +16,7 @@
   <body>
     <button id="pay-button">Pay!</button>
 
+    {{-- data form ini akan di olah oleh webController payment_post --}}
     <form action="" id="submit_form" method="POST">
         @csrf
         {{-- ini biar data payment bisa masuk ke database, jadi kita akalin pake id "json_callback" yang di olah pake kodingan func
