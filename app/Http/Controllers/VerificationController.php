@@ -18,4 +18,11 @@ class VerificationController extends Controller
         $request->fulfill();
         return "berhasil diverifikasi, selamat datang di dahsboard";
     }
+
+    //untuk mengirim link verifikasi lagi
+    public function send(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+        return "Verififikasi email berhasil dikirim";
+    }
 }
