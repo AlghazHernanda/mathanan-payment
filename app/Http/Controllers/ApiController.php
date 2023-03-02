@@ -33,6 +33,7 @@ class ApiController extends Controller
 
         //status berhasil, cari order_id yang sama di database, lalu update statusnya
         $order = Order::where('order_id', $json->order_id)->first();
+        //kembalikan dengan update data order
         return $order->update(['status' => $json->transaction_status]);
     }
 }
